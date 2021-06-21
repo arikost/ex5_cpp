@@ -22,6 +22,7 @@ public:
         for(int i=0; i < _values.size(); i++){
             if(_values[i] == t){
                 _counters[i]++;
+                return;
             }
         }
         _values.push_back(t);
@@ -37,19 +38,52 @@ public:
     }
     T& most_common(){
         if(_values.empty()){
-            throw exception;
+            throw exception();
         }
-        int t = 0;
-        T* ptr = _values[0];
-        for (int i = 0; i < _values.size(); ++i) {
-            if(_counters[i] > t && ptr > _values[i] ){
-                ptr = _values[i];
+        int t = _counters[0], j=0;
+
+        for (int i = 1; i < _values.size(); ++i) {
+            if(_counters[i] > t ){
+                j = i;
                 t = _counters[i];
             }
+            else if(_counters[i] == t){
+                if(_values[j] > _values[i]){
+                    j = i;
+                }
+            }
         }
-        return *ptr;
+        return _values[j];
     }
-
+    void add_from_stream(istream& in){
+       T ptr;
+        while(true){
+            in >> ptr;
+            if(in.eof()){
+                break;
+            }
+            if(in.fail()){
+                throw exception();
+            }
+            add(ptr);
+        }
+    }
+    void print_to_stream(ostream& out){
+        out << "{ ";
+        for(int i = 0; i < _values.size(); i++){
+            out << _values[i] << ":" << _counters[i] << " ";
+        }
+        out << "}" << endl;
+    }
+    void print_most_common(ostream& out) {
+        T most_com = most_common();
+        for (int i = 0; i < _values.size(); ++i) {
+            if(_values[i] == most_com){
+                out << _values[i] << ":" << _counters[i] << endl;
+                break;
+            }
+        }
+    }
 };
 
 
