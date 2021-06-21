@@ -1,0 +1,14 @@
+string_counter sc1
+stats sc1
+add_from_string sc1 abc abc a
+stats sc1
+string_counter sc2
+add_from_file sc2 poem.txt
+stats sc2
+most_common sc2
+add_from_string sc1 abc
+stats sc1
+int_counter ic
+add_from_string ic 1 2 3 99 3 2 1
+stats ic
+most_common ic

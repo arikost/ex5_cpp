@@ -1,0 +1,7 @@
+int_counter i
+add_from_file i numbers.txt
+stats i
+add_from_file i numbers.txt
+stats i
+add_from_string i 10 20 30
+stats i

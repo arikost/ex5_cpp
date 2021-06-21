@@ -11,9 +11,17 @@ using namespace std;
 template <class T>
 class Counter{
 private:
+    string name;
     vector<T> _values;
     vector<unsigned int> _counters;
 public:
+    Counter(string n){
+        this->name = n;
+
+    }
+    string getName(){
+        return name;
+    }
     void clear(){
         _values.clear();
         _counters.clear();
