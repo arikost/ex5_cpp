@@ -5,6 +5,7 @@
 #ifndef EX5_CPP_COUNTER_H
 #define EX5_CPP_COUNTER_H
 #include <vector>
+#include <typeinfo>
 #include <iostream>
 
 using namespace std;
@@ -21,6 +22,9 @@ public:
     }
     string getName(){
         return name;
+    }
+    string getType(){
+        return typeid(T).name();
     }
     void clear(){
         _values.clear();
@@ -64,7 +68,7 @@ public:
         return _values[j];
     }
     void add_from_stream(istream& in){
-       T ptr;
+        T ptr;
         while(true){
             in >> ptr;
             if(in.eof()){
