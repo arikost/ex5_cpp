@@ -7,18 +7,23 @@
 #include <vector>
 #include <typeinfo>
 #include <iostream>
-
+#include "MyException.h"
+#include "Template.h"
 using namespace std;
 template <class T>
-class Counter{
+class Counter : public Template{
 private:
     string name;
     vector<T> _values;
     vector<unsigned int> _counters;
 public:
+    Counter() {}
+
     Counter(string n){
         this->name = n;
-
+    }
+    bool isEmpty(){
+        return _values.empty();
     }
     string getName(){
         return name;
@@ -49,11 +54,10 @@ public:
         return 0;
     }
     T& most_common(){
-        if(_values.empty()){
-            throw exception();
+        if(isEmpty()){
+            throw MyException("Counter is empty");
         }
         int t = _counters[0], j=0;
-
         for (int i = 1; i < _values.size(); ++i) {
             if(_counters[i] > t ){
                 j = i;
@@ -81,6 +85,9 @@ public:
         }
     }
     void print_to_stream(ostream& out){
+        if(isEmpty()){
+            throw MyException("Counter is empty");
+        }
         out << "{ ";
         for(int i = 0; i < _values.size(); i++){
             out << _values[i] << ":" << _counters[i] << " ";
@@ -88,6 +95,9 @@ public:
         out << "}" << endl;
     }
     void print_most_common(ostream& out) {
+        if(isEmpty()){
+            throw MyException("Counter is empty");
+        }
         T most_com = most_common();
         for (int i = 0; i < _values.size(); ++i) {
             if(_values[i] == most_com){

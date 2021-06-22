@@ -3,4 +3,4 @@ project(ex5_cpp)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_executable(ex5_cpp main.cpp Counter.h parser.h)
+add_executable(ex5_cpp main.cpp Counter.h parser.h MyException.h Template.h)
