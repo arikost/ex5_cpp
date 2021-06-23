@@ -17,9 +17,8 @@ private:
     vector<T> _values;
     vector<unsigned int> _counters;
 public:
-    Counter() {}
 
-    Counter(string n){
+    Counter(string n) : Template() {
         this->name = n;
     }
     bool isEmpty(){
