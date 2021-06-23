@@ -84,9 +84,6 @@ public:
         }
     }
     void print_to_stream(ostream& out){
-        if(isEmpty()){
-            throw MyException("Counter is empty");
-        }
         out << "{ ";
         for(int i = 0; i < _values.size(); i++){
             out << _values[i] << ":" << _counters[i] << " ";

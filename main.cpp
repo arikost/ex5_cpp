@@ -4,9 +4,12 @@ using namespace std;
 
 
 int main() {
-    Counter<int> *c = new Counter<int>("c");
-    Counter<string> *s = new Counter<string>("c");
-    cout << c->getType() << endl;
-    cout << typeid(int).name();
+    Parser *parser;
+    try{
+        parser->start();
+    }catch (MyException exception){
+        cerr << exception.getMsg() << endl;
+        exit(1);
+    }
     return 0;
 }
